@@ -58,7 +58,7 @@ async function getMessages(userId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            console.log(data)
+            // console.log(data)
             messages = data.messages;
         } else {
             console.error('Error fetching messages:', data.error);

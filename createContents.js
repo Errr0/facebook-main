@@ -139,6 +139,7 @@ async function createChatContent(contentDiv, user) {
     
     const messages = await getMessages(user.id);
     renderMessages(messages, messagesContainer);
+    startMessagePolling(user.id, messagesContainer);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     sendButton.addEventListener('click', () => {
@@ -185,10 +186,7 @@ function addMessageToDisplay(message, container, currentUserId = getCurrentUserI
     const messageTime = new Date(message.timestamp);
     const formattedTime = messageTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     
-    messageElement.innerHTML = `
-        <div>${message.content}</div>
-        <div style="font-size: 0.7em; text-align: right; margin-top: 5px;">${formattedTime}</div>
-    `;
+    messageElement.innerHTML = `<div>${message.content}</div> <div style="font-size: 0.7em; text-align: right; margin-top: 5px;">${formattedTime}</div>`;
     
     container.appendChild(messageElement);
     
@@ -210,4 +208,11 @@ function sendMessage(content, receiverId) {
         timestamp: new Date().toISOString()
     };    
     saveMessage(messageData);
+}
+
+function startMessagePolling(userId, messagesContainer) {
+    setInterval(async () => {
+        let messages = await getMessages(userId);
+        renderMessages(messages, messagesContainer);
+    }, 1000);
 }
