@@ -92,8 +92,8 @@ h2{
 }
 
 a{
-    text-decoration: 0;
-    color: var(--red)
+    text-decoration: underline;
+    color: var(--white)
 }
 
 .menu_button{
@@ -241,7 +241,27 @@ a{
     cursor: pointer;
 }
 
+.message {
+    max-width: 70%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+}
 
+.sent {
+    background-color: #4CAF50;
+    color: white;
+    text-align: right;
+    margin-left: auto;
+}
+
+.received {
+    background-color: #f1f1f1;
+    color: black;
+    text-align: left;
+    margin-right: auto;
+}
 
 .top-left { top: -5px; left: -5px; cursor: nwse-resize; }
 .top-right { top: -5px; right: -5px; cursor: nesw-resize; }
